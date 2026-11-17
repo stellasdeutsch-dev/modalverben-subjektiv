@@ -100,6 +100,8 @@ a.pill:hover,button.pill:hover{background:var(--ink);color:#fff;border-color:var
 .say.on{background:var(--violet);animation:pulse .6s ease infinite alternate}
 @keyframes pulse{to{scale:1.15}}
 .no-tts .say{display:none}
+.meter .say,.build .say,.labout .say,.lane.dk .say{background:#fff;color:var(--ink)}
+.meter .say:hover,.build .say:hover,.labout .say:hover,.lane.dk .say:hover{background:var(--burst);color:var(--ink)}
 
 /* shared hover for info cards (individual properties, never transform) */
 .hov{transition:translate .25s cubic-bezier(.3,1.4,.5,1),box-shadow .25s}
@@ -220,6 +222,7 @@ a.pill:hover,button.pill:hover{background:var(--ink);color:#fff;border-color:var
 .fl i{grid-area:1/1;font-style:normal;transition:transform .55s cubic-bezier(.5,0,.2,1),opacity .45s;backface-visibility:hidden}
 .fl .fb{opacity:0;transform:rotateX(90deg) translateY(30%)}
 .flip{perspective:400px;white-space:pre}
+.fl.fw{justify-items:start}
 .flip.to .fl .fa{opacity:0;transform:rotateX(-90deg) translateY(-30%)}
 .flip.to .fl .fb{opacity:1;transform:none;color:var(--burst)}
 
@@ -269,7 +272,7 @@ a.pill:hover,button.pill:hover{background:var(--ink);color:#fff;border-color:var
 .sbig{font:700 clamp(26px,7vw,40px)/1.15 var(--f-body);margin:0;min-height:1.2em}
 .sbig .mv{display:inline-block;background:var(--violet);color:#fff;padding:0 .18em;rotate:-2deg}
 .sbig.fact .mv{background:var(--ink)}
-.sbar{position:relative;height:16px;background:var(--paper-2);margin-top:18px}
+.sbar{position:relative;height:16px;background:var(--paper-2);margin-top:46px}
 .sbar i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--violet);transition:width .8s cubic-bezier(.5,0,.2,1),background .4s}
 .sbar b{position:absolute;right:0;top:-30px;font:400 24px/1 var(--f-bubble)}
 .cap{min-height:4.6em;margin:16px 0 0;font:400 16px/1.5 var(--f-body);max-width:56ch}
@@ -295,7 +298,7 @@ a.pill:hover,button.pill:hover{background:var(--ink);color:#fff;border-color:var
 .trait .ex span{color:var(--mute)}
 
 /* PAST: builder + panels */
-.build{margin-top:26px;background:var(--ink);color:#fff;padding:18px;display:flex;flex-wrap:wrap;align-items:flex-start;gap:14px 10px}
+.build{margin-top:26px;background:var(--ink);color:#fff;padding:18px;display:flex;flex-wrap:wrap;align-items:flex-start;gap:20px 10px}
 @media (min-width:760px){.build{padding:28px}}
 .build .bg{flex-basis:100%;font:600 13px/1.3 var(--f-body);color:#9a9a92;display:flex;gap:8px;align-items:center}
 .bp{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
@@ -739,11 +742,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <div class="scene rv" id="scene">
       <div class="scene-grid">
         <ul class="clues" id="clues">
-          <li class="clue" data-at="1"><svg class="ic"><use href="#i-building-2"/></svg>Лукас не пришёл на планёрку.</li>
-          <li class="clue" data-at="2"><svg class="ic"><use href="#i-thermometer"/></svg>Вчера он кашлял на весь офис.</li>
-          <li class="clue" data-at="3"><svg class="ic"><use href="#i-message-circle"/></svg>Утром написал в чат: <span lang="de">«Kopfweh»</span>. И пропал.</li>
-          <li class="clue" data-at="4"><svg class="ic"><use href="#i-pill"/></svg>Его жену видели в аптеке. С тремя пачками аспирина.</li>
-          <li class="clue" data-at="5"><svg class="ic"><use href="#i-stethoscope"/></svg>Пришла справка от врача.</li>
+          <li class="clue" data-at="1"><svg class="ic"><use href="#i-building-2"/></svg><span>Лукас не пришёл на планёрку.</span></li>
+          <li class="clue" data-at="2"><svg class="ic"><use href="#i-thermometer"/></svg><span>Вчера он кашлял на весь офис.</span></li>
+          <li class="clue" data-at="3"><svg class="ic"><use href="#i-message-circle"/></svg><span>Утром написал в чат: <span lang="de">«Kopfweh»</span>. И пропал.</span></li>
+          <li class="clue" data-at="4"><svg class="ic"><use href="#i-pill"/></svg><span>Его жену видели в аптеке. С тремя пачками аспирина.</span></li>
+          <li class="clue" data-at="5"><svg class="ic"><use href="#i-stethoscope"/></svg><span>Пришла справка от врача.</span></li>
         </ul>
         <div>
           <p class="sbig" id="sbig" lang="de">Er <span class="mv" id="sVerb">könnte</span> krank sein.</p>
@@ -802,7 +805,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <article class="panel v">
         <span class="ghost" aria-hidden="true">95</span><svg class="ic who" aria-hidden="true"><use href="#i-fingerprint"/></svg>
         <span class="casepill" data-lbl data-a="сейчас" data-b="раньше">сейчас</span>
-        <div class="morph flip" data-from="sein" data-to="gewesen sein" lang="de"></div>
+        <div class="morph flip" data-whole data-from="sein" data-to="gewesen sein" lang="de"></div>
         <div class="pills"><span class="pill" lang="de">muss</span><span class="pill solid">≈ 95 %</span></div>
         <dl class="spec">
           <div><dt>Сейчас</dt><dd lang="de">Er muss im Büro sein.</dd></div>
@@ -813,7 +816,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <article class="panel s">
         <span class="ghost" aria-hidden="true">75</span><svg class="ic who" aria-hidden="true"><use href="#i-cloud-sun"/></svg>
         <span class="casepill" data-lbl data-a="сейчас" data-b="раньше">сейчас</span>
-        <div class="morph flip" data-from="kommen" data-to="gekommen sein" lang="de"></div>
+        <div class="morph flip" data-whole data-from="kommen" data-to="gekommen sein" lang="de"></div>
         <div class="pills"><span class="pill" lang="de">dürfte</span><span class="pill solid">≈ 75 %</span></div>
         <dl class="spec">
           <div><dt>Сейчас</dt><dd lang="de">Sie dürfte gleich kommen.</dd></div>
@@ -825,7 +828,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <article class="panel d">
         <span class="ghost" aria-hidden="true">40</span><svg class="ic who" aria-hidden="true"><use href="#i-cloud"/></svg>
         <span class="casepill" data-lbl data-a="сейчас" data-b="раньше">сейчас</span>
-        <div class="morph flip" data-from="verpassen" data-to="verpasst haben" lang="de"></div>
+        <div class="morph flip" data-whole data-from="verpassen" data-to="verpasst haben" lang="de"></div>
         <div class="pills"><span class="pill" lang="de">könnte</span><span class="pill solid">≈ 40 %</span></div>
         <dl class="spec">
           <div><dt>Сейчас</dt><dd lang="de">Er könnte den Bus verpassen.</dd></div>
@@ -836,7 +839,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <article class="panel p">
         <span class="ghost" aria-hidden="true">75</span><svg class="ic who" aria-hidden="true"><use href="#i-telescope"/></svg>
         <span class="casepill" data-lbl data-a="сейчас" data-b="раньше">сейчас</span>
-        <div class="morph flip" data-from="schlafen" data-to="geschlafen haben" lang="de"></div>
+        <div class="morph flip" data-whole data-from="schlafen" data-to="geschlafen haben" lang="de"></div>
         <div class="pills"><span class="pill" lang="de">wird wohl</span><span class="pill solid">≈ 75 %</span></div>
         <dl class="spec">
           <div><dt>Сейчас</dt><dd lang="de">Er wird wohl noch schlafen.</dd></div>
@@ -935,7 +938,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <div class="lanes" id="wLanes">
       <div class="lane hov rv">
         <div class="lh"><span class="lflag" data-lbl data-a="будущее" data-b="догадка">будущее</span><small><svg class="ic"><use href="#i-clock"/></svg>смотри на одно слово</small></div>
-        <div class="big" lang="de"><span>Er wird</span><span class="flip wflip" data-from="morgen" data-to="jetzt"></span><span>im Büro sein.</span></div>
+        <div class="big" lang="de"><span>Er wird</span><span class="flip wflip" data-whole data-from="morgen" data-to="jetzt"></span><span>im Büro sein.</span></div>
         <p class="tr" data-a="Он будет в офисе завтра. Обычный Futur I." data-b="Он, наверное, сейчас в офисе. Догадка, примерно как dürfte.">Он будет в офисе завтра. Обычный Futur I.</p>
       </div>
       <div class="lane dk hov rv">
@@ -1108,6 +1111,7 @@ function xInit(){
   /* ---------- flip letters ---------- */
   function buildFlip(el){
     var a = el.dataset.from, b = el.dataset.to, n = Math.max(a.length, b.length), html = '';
+    if(el.hasAttribute('data-whole')){ el.innerHTML = '<span class="fl fw"><i class="fa">'+a+'</i><i class="fb">'+b+'</i></span>'; el.setAttribute('aria-label', a + ' → ' + b); return; }
     for(var i=0;i<n;i++){
       var x = a[i]||'', y = b[i]||'';
       html += x===y ? '<span>'+x+'</span>' : '<span class="fl"><i class="fa">'+x+'</i><i class="fb">'+y+'</i></span>';
